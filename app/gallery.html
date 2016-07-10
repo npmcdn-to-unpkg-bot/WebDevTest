@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Tile Gallery</title>
+    <link href="/styles/gallery.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container" ng-app="tileGallery" ng-controller="tileGalleryController">
+
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Tile Gallery</h1>
+            </div>
+
+            <!-- Angular repeater for tiles -->
+            <div class="col-lg-3 col-md-4 col-xs-6 thumb" ng-repeat="tile in tiles">
+                <a class="thumbnail" href="#">
+                    <img class="img-responsive" src="{{tile.src}}" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->    
+    
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->    
+    <!-- build:js scripts/plugins.js -->
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/button.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/popover.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="/bower_components/bootstrap-sass/assets/javascripts/bootstrap/tab.js"></script>
+    <!-- endbuild -->
+    <script>
+        var app = angular.module("tileGallery", []);
+        app.controller("tileGalleryController", function($scope) {
+            // $scope.tiles = [
+            //     {                    
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            //     {
+            //         "src" : "http://placehold.it/150x150",
+            //     },
+            // ]
+
+            var dir = "images/tiles/";
+            var fileextension = ".png";
+            $.ajax({
+                //This will retrieve the contents of the folder if the folder is configured as 'browsable'
+                url: dir,
+                success: function (data) {
+                    //List all .png file names in the page
+                    $(data).find("a:contains(" + fileextension + ")").each(function () {
+                        var filename = this.href.replace(window.location, "").replace("http://", "");
+                        console.log(filename);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
