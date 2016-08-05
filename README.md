@@ -6,3 +6,7 @@ How to [get started](https://github.com/yeoman/generator-webapp/blob/master/docs
 
 ## Setup
 [Getting started](https://github.com/yeoman/generator-webapp#getting-started)
+
+### On new machine
+1. Run 'npm install --global yo gulp-cli bower'
+2. Run 'bower install'
